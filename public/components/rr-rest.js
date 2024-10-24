@@ -25,12 +25,14 @@ customElements.define(
     connectedCallback() {
       this.innerHTML = `
       <h2>Rest</h2>
-      <p>Ad</p>
-      <time></time>
-      <nav>
-        <button type="button">Previous</button>
-        <button type="button">Next</button>
-      </nav>
+      <div>
+        <span>&lt;&lt;</span>
+        <rr-card>
+          <p>Ad</p>
+          <time></time>
+        </rr-card>
+        <span>&gt;&gt;</span>
+      </div>
     `;
       this.timeElement = this.querySelector("time");
       this.update();
@@ -41,7 +43,7 @@ customElements.define(
       this.intervalId = undefined;
     }
 
-    // TODO: time should only be the initial value
+    // TODO: time attribute should only be the initial value
 
     static observedAttributes = ["time", "active"];
 

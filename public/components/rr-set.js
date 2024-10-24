@@ -29,6 +29,12 @@ customElements.define(
       this.update();
     }
 
+    // TODO: refactor out rr-view
+
+    // TODO: show previous reps as initial
+
+    // TODO: refactor out rr-card
+
     update() {
       const progressionSet = getNextProgressionSet(this.category);
       const exercise = getExercise(progressionSet.exerciseId);
@@ -39,28 +45,27 @@ customElements.define(
 
       this.innerHTML = `
         <h2><a href=${exercise.url} target="_blank">${exercise.name}</a></h2>
-        <img src="./assets/placeholder.jpg" width="50" />
         <div>
-          <label for="${id}-input">Reps: <span>0</span></label>
-          <input id="${id}-input" type="range" name="${id}" max="${progressionSet.max}" list="reps">
-          <datalist id="reps">
-            ${reps.map((rep) => `<option value="${rep}"></option>`).join("")}
-          </datalist>
+          <rr-card>
+            <img src="./assets/placeholder.jpg" width="50" />
+            <label for="${id}-input">Reps: <time>0</time></label>
+            <input id="${id}-input" type="range" name="${id}" max="${progressionSet.max}" list="reps">
+            <datalist id="reps">
+              ${reps.map((rep) => `<option value="${rep}"></option>`).join("")}
+            </datalist>
+          </rr-card>
+          <span>&gt;&gt;</span>
         </div>
-        <nav>
-          <a href="#home">Previous</a>
-          <a href="#finish">Next</a>
-        </nav>
       `;
 
       const inputEl = this.querySelector("input");
-      const spanEl = this.querySelector("span");
-      if (inputEl === null || spanEl === null) {
+      const timeEl = this.querySelector("time");
+      if (inputEl === null || timeEl === null) {
         throw new Error("Could not query all elements");
       }
 
       inputEl.addEventListener("input", (event) => {
-        spanEl.textContent =
+        timeEl.textContent =
           /** @type {HTMLInputElement} */ (event.target).value;
       });
     }

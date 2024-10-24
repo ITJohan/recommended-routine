@@ -44,6 +44,8 @@ button {
   }
 }
 
+/* TODO: refactor out and import rr-* CSS */
+
 rr-form form {
   display: flex;
   width: 100%;
@@ -57,27 +59,27 @@ rr-set {
   display: flex;
   flex: none;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   padding: var(--spacing-md);
   scroll-snap-align: center;
   width: 100%;
 
-  & > nav {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-  }
-
   & > div {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    width: 80%;
+    align-items: center;
+    width: 100%;
+  }
+}
 
-    & > datalist {
-      display: flex;
-      justify-content: space-between;
-    }
+rr-card {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  background-color: var(--color-green);
+
+  & > datalist {
+    display: flex;
+    justify-content: space-between;
   }
 }
